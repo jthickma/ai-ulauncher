@@ -1,5 +1,30 @@
-import logging
+import sys
 import os
+import subprocess
+
+def run_in_venv():
+    ext_dir = os.path.dirname(os.path.abspath(__file__))
+    venv_dir = os.path.join(ext_dir, '.venv')
+    requirements_file = os.path.join(ext_dir, 'requirements.txt')
+
+    if sys.prefix == venv_dir:
+        return
+
+    if not os.path.exists(venv_dir):
+        import venv
+        builder = venv.EnvBuilder(with_pip=True, system_site_packages=True)
+        builder.create(venv_dir)
+        
+        if os.path.exists(requirements_file):
+            pip_exe = os.path.join(venv_dir, 'bin', 'pip')
+            subprocess.check_call([pip_exe, 'install', '-r', requirements_file])
+
+    python_exe = os.path.join(venv_dir, 'bin', 'python')
+    os.execv(python_exe, [python_exe] + sys.argv)
+
+run_in_venv()
+
+import logging
 import json
 import requests
 from datetime import datetime
