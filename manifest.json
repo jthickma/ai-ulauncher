@@ -1,0 +1,125 @@
+{
+    "required_api_version": "^2.0.0",
+    "name": "Answering AI",
+    "description": "Communicate with AI models (conversational memory, auto-logging, commands, themes, cleanup). All models are free via OpenRouter. Forked and enhanced from https://github.com/SeoFernando25/ulauncher-gpt",
+    "developer_name": "nktauserum",
+    "icon": "images/icon.png",
+    "options": {
+        "query_debounce": 1
+    },
+    "preferences": [
+        {
+            "id": "gpt_kw",
+            "type": "keyword",
+            "name": "Keyword",
+            "default_value": "ais"
+        },
+        {
+            "id": "api_key",
+            "type": "input",
+            "name": "Openrouter API Key",
+            "description": "Required for API access.",
+            "default_value": ""
+        },
+        {
+            "id": "dalle_api_key",
+            "type": "input",
+            "name": "DALL-E API Key",
+            "description": "For image generation (optional).",
+            "default_value": ""
+        },
+        {
+            "id": "model",
+            "type": "input",
+            "name": "Model",
+            "default_value": "google/gemini-2.0-flash-exp:free",
+            "description": "Select a free model. See https://openrouter.ai/models",
+            "options": [
+                {"text": "Google: Gemini Flash Lite 2.0 Preview", "value": "google/gemini-flash-lite-preview:free"},
+                {"text": "Google: Gemini 2.0 Flash (Reasoning)", "value": "google/gemini-2.0-flash-thinking-exp:free"},
+                {"text": "DeepSeek: DeepSeek V3", "value": "deepseek/deepseek-chat:free"},
+                {"text": "Mistral: Mistral Small 3.1", "value": "mistralai/mistral-small-24b-instruct-2501:free"},
+                {"text": "Gemma 3", "value": "google/gemma-3-1b-it:free"}
+            ]
+        },
+        {
+            "id": "line_wrap",
+            "type": "input",
+            "name": "Line Wrap Length",
+            "description": "Max characters per line (0 to disable).",
+            "default_value": "64"
+        },
+        {
+            "id": "enable_wrapping",
+            "type": "select",
+            "name": "Enable Wrapping",
+            "description": "Toggle text wrapping in responses.",
+            "options": [
+                {"text": "True", "value": "True"},
+                {"text": "False", "value": "False"}
+            ],
+            "default_value": "True"
+        },
+        {
+            "id": "system_prompt",
+            "type": "input",
+            "name": "System Prompt",
+            "description": "Context prompt for the AI."
+        },
+        {
+            "id": "temperature",
+            "type": "input",
+            "name": "Temperature",
+            "description": "Predictability: 0 (low) to 1 (high).",
+            "default_value": "0.7"
+        },
+        {
+            "id": "log_directory",
+            "type": "input",
+            "name": "Log Directory",
+            "description": "Path for saving Markdown logs (empty = home dir).",
+            "default_value": ""
+        },
+        {
+            "id": "logging_level",
+            "type": "select",
+            "name": "Logging Level",
+            "description": "Verbosity for internal logs.",
+            "options": [
+                {"text": "DEBUG", "value": "DEBUG"},
+                {"text": "INFO", "value": "INFO"},
+                {"text": "WARNING", "value": "WARNING"},
+                {"text": "ERROR", "value": "ERROR"}
+            ],
+            "default_value": "INFO"
+        },
+        {
+            "id": "theme",
+            "type": "select",
+            "name": "Theme",
+            "description": "Dark or light theme for responses.",
+            "options": [
+                {"text": "Light", "value": "light"},
+                {"text": "Dark", "value": "dark"}
+            ],
+            "default_value": "light"
+        },
+        {
+            "id": "language",
+            "type": "select",
+            "name": "Language",
+            "description": "Interface language.",
+            "options": [
+                {"text": "English", "value": "en"}
+            ],
+            "default_value": "en"
+        },
+        {
+            "id": "log_cleanup_days",
+            "type": "input",
+            "name": "Log Cleanup Days",
+            "description": "Days to keep logs before auto-deletion (0 to disable).",
+            "default_value": "7"
+        }
+    ]
+}
